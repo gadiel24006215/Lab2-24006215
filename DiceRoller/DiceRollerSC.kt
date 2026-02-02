@@ -58,7 +58,64 @@ fun CharacterSheetScreen() {
         else -> Color.Unspecified
     }
 
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "RPG Character Sheet",
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            )
+        }
+    ) { paddingValues ->
 
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            StatRow(
+                name = "Vitality",
+                value = vitality,
+                onRoll = { vitality = (1..20).random() }
+            )
+
+            StatRow(
+                name = "Dexterity",
+                value = dexterity,
+                onRoll = { dexterity = (1..20).random() }
+            )
+
+            StatRow(
+                name = "Wisdom",
+                value = wisdom,
+                onRoll = { wisdom = (1..20).random() }
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "Total Score: $totalScore",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            if (feedbackText.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = feedbackText,
+                    color = feedbackColor,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+            }
+        }
+    }
 }
 
 @Composable
