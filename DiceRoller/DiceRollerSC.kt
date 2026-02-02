@@ -61,7 +61,40 @@ fun CharacterSheetScreen() {
 
 }
 
+@Composable
+fun StatRow(
+    name: String,
+    value: Int,
+    onRoll: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = name,
+                fontWeight = FontWeight.Bold
+            )
 
+            Text(
+                text = value.toString(),
+                fontSize = 20.sp
+            )
+
+            Button(onClick = onRoll) {
+                Text("Roll")
+            }
+        }
+    }
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
