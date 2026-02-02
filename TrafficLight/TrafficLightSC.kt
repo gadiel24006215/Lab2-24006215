@@ -47,7 +47,45 @@ fun TrafficLightScreen() {
     var currentLight by remember { mutableStateOf(Light.Red) }
 
 
+    LaunchedEffect(Unit) {
+        while (true) {
+            currentLight = Light.Red
+            delay(2000)
 
+            currentLight = Light.Green
+            delay(2000)
+
+            currentLight = Light.Yellow
+            delay(1000)
+        }
+    }
+
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        TrafficLightCircle(
+            isActive = currentLight == Light.Red,
+            activeColor = Color.Red
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TrafficLightCircle(
+            isActive = currentLight == Light.Yellow,
+            activeColor = Color.Yellow
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TrafficLightCircle(
+            isActive = currentLight == Light.Green,
+            activeColor = Color.Green
+        )
+    }
 }
 
 @Composable
